@@ -52,15 +52,14 @@ error_val   = zeros(m, 1);
 %
 
 % ---------------------- Sample Solution ----------------------
-lambda_ = zeros(size(lambda));
 
 for i = 1:m
 	Xtrain = X(1:i,:);
-	Ytrain = i(1:i,:);
-	theta = trainLinearReg(Xtrain, Ytrain, lambda);
-	error_train(i,1), grad = linearRegCostFunction(Xtrain, Ytrain, theta, lambda_);
-	error_val(i,1), grad = linearRegCostFunction(Xval, yval, theta, lambda_);
-
+	ytrain = y(1:i);
+	
+	theta = trainLinearReg(Xtrain, ytrain, lambda);
+	error_train(i,1) = linearRegCostFunction(Xtrain, ytrain, theta, 0);
+	error_val(i,1) = linearRegCostFunction(Xval, yval, theta, 0);
 
 % -------------------------------------------------------------
 
